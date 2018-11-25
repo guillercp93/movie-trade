@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row" style="padding: 5%;">
+    <form class="col-md-12 form-wrap" method="POST">
+        <h3 class="pb-20 text-center mb-20">Edit {{ movie.name }}</h3>
+        <input type="text" class="form-control mb-20" name="code" placeholder="Code" value="{{movie.code}}" required>
+        <input type="text" class="form-control mb-20" name="name" placeholder="Name" value="{{movie.name}}" required>
+        <input type="text" class="form-control mb-20" name="genre" placeholder="Genre" value="{{movie.genre}}" required>
+        <textarea name="description" class="form-control mb-20" rows="5" placeholder="Description" required>
+            {{movie.description}}
+        </textarea>
+        <div class="text-center confirm_btn_box">
+            <a href="/" class="genric-btn danger circle">Cancel</a>
+            <button class="genric-btn success circle">Update</button>
+        </div>
+    </form>
+    </div>
+</div>
+{% endblock %}

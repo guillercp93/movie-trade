@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row" style="padding: 5%;">
+    <form class="col-md-12 form-wrap" method="POST" enctype="multipart/form-data">
+        <h3 class="pb-20 text-center mb-20">Upload image</h3>
+        <label class="col-form-label" for="image">Upload image</label>
+        <input type="file" class="form-control-file mb-20" name="image" id="image" placeholder="image" required />
+        <label class="col-form-label" for="data_movies">Choose a movie to assign image</label>
+        <input id="data_movies" class="form-control mb-20" name="movie" required />
+        <input type="hidden" id="movie_id" name="movie_id" />
+        <div class="text-center confirm_btn_box">
+            <a href="/" class="genric-btn danger circle">Cancel</a>
+            <button class="genric-btn success circle">Save</button>
+        </div>
+    </form>
+</div>
+<script>
+    $("#data_movies").typeahead({
+        source: JSON.parse('{{movies|tojson}}'),
+        displayKey: "code",
+        menu: '<ul class="col-md-12 dropdown-menu" role="listbox"></ul>',
+        item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+        itemContentSelector: 'a',
+        afterSelect: (ele) => $("#movie_id").val(ele.id)
+    })
+</script>
+{% endblock %}

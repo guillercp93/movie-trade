@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="recent-blog-area section_gap">
+		<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Movies List</h1>
+					<p>
+						List of movies registered actually.
+                    </p>
+                    <div class="text-center confirm_btn_box">
+						<a href="/movies/create" class="genric-btn info circle arrow">Create Movie
+							<span class="fas fa-film"></span>
+						</a>
+						<a href="/images/" class="genric-btn info circle arrow">Add images
+							<span class="far fa-images"></span>
+						</a>
+                    </div>
+				</div>
+			</div>
+			<div class="row">
+				{% for movie in movies %}
+				<div class="single-recent-blog col-lg-4 col-md-4">
+					<div class="thumb">
+						<img class="f-img img-fluid mx-auto" src="{{url_for('download_file',filename=movie.filename)}}" alt="{{ movie.name }}">
+					</div>
+					<a href="/movies/detail/{{ movie.id }}/">
+						<h4>{{ movie.name }}</h4>
+					</a>
+					<p>{{ movie.description }}</p>
+					<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
+						<div class="meta">
+							<b>Genre: </b><span>{{ movie.genre }}</span><br />
+							<b>Code: </b><span>{{ movie.code }}</span><br />
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endblock %}

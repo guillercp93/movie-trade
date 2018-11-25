@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="sample-text-area">
+    <div class="container">
+        <a href="/" class="genric-btn danger circle">Back</a>
+        <a href="/movies/edit/{{movie.id}}/" class="genric-btn success circle">Edit</a>
+        <div class="section-top-border">
+            <h3 class="text-heading title_color">{{ movie.name }}</h3>
+            <p class="sample-text">
+                {{ movie.description }}
+            </p>
+            <p>
+                <b>Genre: </b><span>{{ movie.genre }}</span>
+            </p>
+            <p>
+                <b>Code: </b><span>{{ movie.code }}</span>
+            </p>
+        </div>
+        <div class="section-top-border">
+            <h3 class="title_color">Images related to {{ movie.name }}</h3>
+            <div class="row gallery-item">
+                {% for image in images %}
+                <div class="col-md-4">
+                    <a href="{{ url_for('download_file',filename=image.filename) }}" class="img-gal">
+                        <div class="single-gallery-image" style="background: url({{ url_for('download_file',filename=image.filename) }});"></div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
